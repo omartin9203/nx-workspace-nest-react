@@ -2,8 +2,8 @@ name: Webapp pipeline
 on:
   push:
     branches:
-        - main
-        - master
+      - main
+      - master
   pull_request:
 
 jobs:
@@ -57,8 +57,7 @@ jobs:
       - uses: actions/cache@v3
         name: Setup pnpm cache
         with:
-          path:
-            ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
             ~/.cache/Cypress/12.12.0/Cypress/Cypress
 
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
@@ -68,8 +67,11 @@ jobs:
       - name: Install dependencies
         run: pnpm i --frozen-lockfile
 
-      - name: Lint Test
+      - name: Lint Check
         run: pnpm lint
+
+      - name: Format Check
+        run: pnpm format:check
 
       - name: Unit Test
         run: pnpm test

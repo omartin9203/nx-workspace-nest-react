@@ -19,7 +19,7 @@ This project setup was created by executing folling steps
 
 - Lint -> `pnpm lint`
 - Unit Tests -> `pnpm test`
-- Tests e2e  -> `pnpm test:e2e`
+- Tests e2e -> `pnpm test:e2e`
 
 If you need execute on specific app:
 
@@ -27,7 +27,7 @@ If you need execute on specific app:
 - Unit Tests: `pnpm test:client` or `pnpm test:api`
 - Tests e2e: `pnpm test:e2e:client` or `pnpm test:e2e:api`
 
-### Add separate run & build scripts for backend and frontend  
+### Add separate run & build scripts for backend and frontend
 
 - Preview client -> `pnpm preview:client`
 - Build api -> `pnpm build:api`
