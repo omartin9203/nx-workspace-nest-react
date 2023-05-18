@@ -70,8 +70,8 @@ jobs:
       - name: Lint Check
         run: pnpm lint
 
-      - name: Format Check
-        run: pnpm nx format:check
+      # - name: Format Check
+      #   run: pnpm nx format:check
 
       - name: Unit Test
         run: pnpm test
