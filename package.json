@@ -12,10 +12,11 @@
     "affected:dep-graph": "nx affected:graph --base=origin/main --head=HEAD --with-deps",
     "build:client": "nx run client:build",
     "build:api": "nx run api:build",
-    
+    "graph": "nx graph",
+    "graph:deps": "nx graph --with-deps",
     "format": "nx format:write",
     "format:write": "nx format:write",
-    "format:check": "nx format:check",
+    "format:check": "npx nx format:check",
     "lint": "npx nx run-many --all --target=lint --parallel",
     "lint:client": "nx run-many -t lint --projects=tag:scope:client",
     "lint:api": "nx run-many -t lint --projects=tag:scope:api",

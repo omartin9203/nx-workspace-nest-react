@@ -3,7 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/client/src",
   "projectType": "application",
-  "implicitDependencies": ["api", "ui"],
+  "implicitDependencies": ["ui"],
   "targets": {
     "build": {
       "executor": "@nx/vite:build",
@@ -43,7 +43,8 @@
       "executor": "@nx/vite:preview-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "client:build"
+        "buildTarget": "client:build",
+        "proxyConfig": "apps/client/proxy.conf.json"
       },
       "configurations": {
         "development": {
