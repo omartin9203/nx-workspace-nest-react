@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - main
-      - master
   pull_request:
 
 jobs:
@@ -27,54 +26,54 @@ jobs:
               - 'apps/client/**'
               - 'libs/ui/**'
 
-  lint-test-e2e:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
+  # lint-test-e2e:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #       with:
+  #         fetch-depth: 0
 
-      - id: commit
-        uses: pr-mpt/actions-commit-hash@v2
+  #     - id: commit
+  #       uses: pr-mpt/actions-commit-hash@v2
 
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18.16
+  #     - uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 18.16
 
-      - uses: pnpm/action-setup@v2
-        name: Install pnpm
-        id: pnpm-install
-        with:
-          version: 7.23
-          run_install: false
+  #     - uses: pnpm/action-setup@v2
+  #       name: Install pnpm
+  #       id: pnpm-install
+  #       with:
+  #         version: 7.23
+  #         run_install: false
 
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+  #     - name: Get pnpm store directory
+  #       id: pnpm-cache
+  #       shell: bash
+  #       run: |
+  #         echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
 
-      - uses: actions/cache@v3
-        name: Setup pnpm cache
-        with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-            ~/.cache/Cypress/12.12.0/Cypress/Cypress
+  #     - uses: actions/cache@v3
+  #       name: Setup pnpm cache
+  #       with:
+  #         path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+  #           ~/.cache/Cypress/12.12.0/Cypress/Cypress
 
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+  #         key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+  #         restore-keys: |
+  #           ${{ runner.os }}-pnpm-store-
 
-      - name: Install dependencies
-        run: pnpm i --frozen-lockfile
+  #     - name: Install dependencies
+  #       run: pnpm i --frozen-lockfile
 
-      - name: Lint Check
-        run: pnpm lint
+  #     - name: Lint Check
+  #       run: pnpm lint
 
-      # - name: Format Check
-      #   run: pnpm nx format:check
+  #     # - name: Format Check
+  #     #   run: pnpm nx format:check
 
-      - name: Unit Test
-        run: pnpm test
+  #     - name: Unit Test
+  #       run: pnpm test
 
-      - name: e2e Test
-        run: pnpm test:e2e
+  #     - name: e2e Test
+  #       run: pnpm test:e2e

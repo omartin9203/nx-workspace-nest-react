@@ -9,7 +9,7 @@ This project was generated using [Nx](https://nx.dev).
 
 This project setup was created by executing folling steps
 
-- [Install pnpm globally](https://pnpm.io/installation#using-npm) -> `npm i -g nx`
+- [Install pnpm globally](https://pnpm.io/installation#using-npm) -> `npm i -g pnpm`
 - [Install nx globally](https://nx.dev/getting-started/installation#installing-nx-globally) -> `npm i -g nx`
 - Install dependencies -> `pnpm i`
 
