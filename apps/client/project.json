@@ -38,7 +38,6 @@
           "buildTarget": "client:build:production",
           "proxyConfig": "apps/client/proxy.conf.production.json",
           "hmr": false
-
         }
       }
     },

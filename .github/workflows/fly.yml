@@ -21,8 +21,7 @@ jobs:
       - uses: bahmutov/npm-install@v1
       - run: npx nx build api --configuration=production
       - run: npx nx deploy api
-  
-  
+
   # deploy:
   #   name: Deploy app
   #   runs-on: ubuntu-latest

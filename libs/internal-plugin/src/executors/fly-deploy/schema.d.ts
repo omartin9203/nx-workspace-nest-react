@@ -1,4 +1,4 @@
 export interface FlyDeployExecutorSchema {
-    distLocation: string;
-    flyAppName: string;
+  distLocation: string;
+  flyAppName: string;
 }
