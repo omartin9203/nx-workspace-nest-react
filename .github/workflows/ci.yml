@@ -29,7 +29,7 @@ jobs:
             client:
               - 'apps/client/**'
               - 'libs/ui/**'
-  
+
   lint-test:
     name: Nx Cloud - Main Job
     uses: nrwl/ci/.github/workflows/nx-cloud-main.yml@v0.13.0
@@ -96,14 +96,3 @@ jobs:
 
       - run: pnpm nx build api --configuration=production
       - run: pnpm nx deploy api
-
-
-  # deploy:
-  #   name: Deploy app
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - uses: superfly/flyctl-actions/setup-flyctl@master
-  #     - run: flyctl deploy --remote-only
-  #       env:
-  #         FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
