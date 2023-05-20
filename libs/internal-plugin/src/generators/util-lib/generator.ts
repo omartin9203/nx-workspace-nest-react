@@ -2,6 +2,7 @@ import {
   addProjectConfiguration,
   formatFiles,
   generateFiles,
+  installPackagesTask,
   Tree,
 } from '@nx/devkit';
 import * as path from 'path';
@@ -11,8 +12,12 @@ export async function utilLibGenerator(
   tree: Tree,
   options: UtilLibGeneratorSchema
 ) {
-  const projectRoot = `libs/${options.name}`;
+  const name = `util-${options.name}`;
+  const projectRoot = `libs/${options.directory}/${name}`;
+
   addProjectConfiguration(tree, options.name, {
+    name,
+    tags: ['type:util', `scope:${options.directory}`],
     root: projectRoot,
     projectType: 'library',
     sourceRoot: `${projectRoot}/src`,
@@ -20,6 +25,9 @@ export async function utilLibGenerator(
   });
   generateFiles(tree, path.join(__dirname, 'files'), projectRoot, options);
   await formatFiles(tree);
+  return () => {
+    installPackagesTask(tree);
+  };
 }
 
 export default utilLibGenerator;

@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "version": 2,
+  "title": "FlyDeploy executor",
+  "description": "",
+  "type": "object",
+
+  "cli": "nx",
+  "properties": {
+    "distLocation": {
+      "type": "string"
+    },
+    "flyAppName": {
+      "type": "string"
+    }
+  },
+  "required": ["distLocation", "flyAppName"]
+}

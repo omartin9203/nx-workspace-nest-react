@@ -12,6 +12,28 @@
         "index": 0
       },
       "x-prompt": "What name would you like to use?"
+    },
+    "directory": {
+      "type": "string",
+      "description": "The scope of your lib.",
+      "x-prompt": {
+        "message": "Which directory do you want the lib to be in?",
+        "type": "list",
+        "items": [
+          {
+            "value": "client",
+            "label": "client"
+          },
+          {
+            "value": "api",
+            "label": "api"
+          },
+          {
+            "value": "ui",
+            "label": "ui"
+          }
+        ]
+      }
     }
   },
   "required": ["name"]

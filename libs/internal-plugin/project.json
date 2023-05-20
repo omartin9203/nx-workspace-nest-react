@@ -42,7 +42,8 @@
         "lintFilePatterns": [
           "libs/internal-plugin/**/*.ts",
           "libs/internal-plugin/package.json",
-          "libs/internal-plugin/generators.json"
+          "libs/internal-plugin/generators.json",
+          "libs/internal-plugin/executors.json"
         ]
       }
     },
