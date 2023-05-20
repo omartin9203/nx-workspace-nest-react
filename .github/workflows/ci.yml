@@ -96,4 +96,5 @@ jobs:
         run: pnpm i --frozen-lockfile
 
       - run: pnpm nx build api --configuration=production
+      - uses: superfly/flyctl-actions/setup-flyctl@master
       - run: pnpm nx deploy api
