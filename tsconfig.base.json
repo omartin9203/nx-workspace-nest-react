@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@nx-workspace/internal-plugin": ["libs/internal-plugin/src/index.ts"],
       "@nx-workspace/ui": ["libs/ui/src/index.ts"]
     }
   },
