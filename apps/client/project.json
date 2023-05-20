@@ -31,10 +31,12 @@
       "configurations": {
         "development": {
           "buildTarget": "client:build:development",
+          "proxyConfig": "apps/client/proxy.conf.json",
           "hmr": true
         },
         "production": {
           "buildTarget": "client:build:production",
+          "proxyConfig": "apps/client/proxy.conf.production.json",
           "hmr": false
         }
       }

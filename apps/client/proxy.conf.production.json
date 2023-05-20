@@ -1,0 +1,6 @@
+{
+  "/api": {
+    "target": "https://nx-workspace-api.fly.dev",
+    "secure": false
+  }
+}
