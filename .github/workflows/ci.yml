@@ -1,5 +1,8 @@
 name: CI
 
+env:
+  FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
 on:
   push:
     branches:
@@ -7,7 +10,27 @@ on:
   pull_request:
 
 jobs:
-  main:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      api: ${{ steps.filter.outputs.api }}
+      client: ${{ steps.filter.outputs.client }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - uses: dorny/paths-filter@v2.11.1
+        id: filter
+        with:
+          filters: |
+            api:
+              - 'apps/api/**'
+            client:
+              - 'apps/client/**'
+              - 'libs/ui/**'
+  
+  lint-test:
     name: Nx Cloud - Main Job
     uses: nrwl/ci/.github/workflows/nx-cloud-main.yml@v0.13.0
     with:
@@ -31,3 +54,56 @@ jobs:
       number-of-agents: 3
       node-version: '18'
       pnpm-version: '7.23'
+
+  api-deploy:
+    needs: [agents, lint-test, changes]
+    if: needs.changes.outputs.api == 'true' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    name: Deploying API
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.16
+
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 7.23
+          run_install: false
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm i --frozen-lockfile
+
+      - run: pnpm nx build api --configuration=production
+      - run: pnpm nx deploy api
+
+
+  # deploy:
+  #   name: Deploy app
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: superfly/flyctl-actions/setup-flyctl@master
+  #     - run: flyctl deploy --remote-only
+  #       env:
+  #         FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
