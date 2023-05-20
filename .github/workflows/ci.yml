@@ -57,7 +57,8 @@ jobs:
 
   api-deploy:
     needs: [agents, lint-test, changes]
-    if: needs.changes.outputs.api == 'true' && github.ref == 'refs/heads/main'
+    # if: needs.changes.outputs.api == 'true' && github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     name: Deploying API
     steps:
