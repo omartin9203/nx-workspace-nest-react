@@ -2,7 +2,7 @@ import { FlyDeployExecutorSchema } from './schema';
 import { execSync } from 'child_process';
 
 export default async function runExecutor(options: FlyDeployExecutorSchema) {
-  console.log('Executor ran for FlyDeploy -> ', process.env.FLY_API_TOKEN);
+  console.log('Executor ran for FlyDeploy -> ', options.distLocation);
   const cwd = options.distLocation;
   const results = execSync(`flyctl apps list`);
   if (results.toString().includes(options.flyAppName)) {
