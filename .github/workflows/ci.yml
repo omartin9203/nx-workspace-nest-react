@@ -57,8 +57,7 @@ jobs:
 
   api-deploy:
     needs: [agents, lint-test, changes]
-    # if: needs.changes.outputs.api == 'true' && github.ref == 'refs/heads/main'
-    if: github.ref == 'refs/heads/main'
+    if: needs.changes.outputs.api == 'true' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     name: Deploying API
     steps:
@@ -72,5 +71,4 @@ jobs:
         run: flyctl apps list
 
       - name: Deploy Project to fly
-        run: flyctl deploy --remote-only
-        # run: flyctl launch --now --region=mad
+        run: flyctl deploy --remote-only --config ./apps/api/fly.toml
