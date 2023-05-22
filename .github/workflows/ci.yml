@@ -65,7 +65,7 @@ jobs:
 
       - uses: superfly/flyctl-actions/setup-flyctl@master
 
-      - name: Fly apps 
+      - name: Fly apps
         run: flyctl apps list
 
       - name: Deploy Project to fly
