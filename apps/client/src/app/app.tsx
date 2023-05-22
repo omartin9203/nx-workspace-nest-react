@@ -9,6 +9,7 @@ import { Banner } from '@nx-workspace/ui';
 export function App() {
   return (
     <div>
+      <span>ssss</span>
       <Banner />
       <NxWelcome title="client" />
 
