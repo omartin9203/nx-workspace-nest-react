@@ -72,4 +72,5 @@ jobs:
         run: flyctl apps list
 
       - name: Deploy Project to fly
-        run: flyctl launch --now --region=mad --config ./apps/api/fly.toml
+        run: flyctl deploy --remote-only
+        # run: flyctl launch --now --region=mad --config ./apps/api/fly.toml
