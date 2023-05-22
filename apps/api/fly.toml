@@ -8,7 +8,7 @@ processes = []
   auto_rollback = true
 
 [build]
-  dockerfile = "apps/api/Dockerfile"
+  dockerfile = "Dockerfile"
   build-target = "production"
 
 [env]
