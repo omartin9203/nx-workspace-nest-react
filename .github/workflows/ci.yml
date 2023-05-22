@@ -67,8 +67,5 @@ jobs:
 
       - uses: superfly/flyctl-actions/setup-flyctl@master
 
-      - name: Fly apps
-        run: flyctl apps list
-
-      - name: Deploy Project to fly
+      - name: Deploy Project to fly.dev
         run: flyctl deploy --remote-only --config ./apps/api/fly.toml
