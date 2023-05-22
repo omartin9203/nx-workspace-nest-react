@@ -20,30 +20,8 @@
       },
       "configurations": {
         "development": {},
-        "production": {
-          "externalDependencies": [
-            "@nestjs/microservices",
-            "@nestjs/microservices/microservices-module",
-            "@nestjs/websockets/socket-module",
-            "class-transformer",
-            "class-validator",
-            "cache-manager",
-            "cache-manager/package.json"
-          ],
-          "assets": ["apps/api/src/assets", "apps/api/src/fly.toml"]
-        }
+        "production": {}
       }
-    },
-    "deploy": {
-      "executor": "@nx-workspace/internal-plugin:fly-deploy",
-      "outputs": [],
-      "options": {
-        "distLocation": "dist/apps/api",
-        "flyAppName": "nx-workspace-api"
-      },
-      "dependsOn": [
-        { "target": "build", "projects": "self", "params": "forward" }
-      ]
     },
     "serve": {
       "executor": "@nx/js:node",
